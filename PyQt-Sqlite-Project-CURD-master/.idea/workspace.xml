@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1c4a4195-686c-4be4-882c-7c0b1eeff6ff" name="默认变更列表" comment="完整版">
+      <change afterPath="$PROJECT_DIR$/Camera.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/addsentence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/addsw.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/addword.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/altersentence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alterword.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analyze.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asrt_wrapper.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assess.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/click_here.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fullPlayDialog.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/generate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/htmlparser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/meutils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myaudiolayout.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/preCamera.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recordVideo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sentence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/standard_audio.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sys_management.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/t_main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/train_log.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user_management.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/addDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/adduser.py" beforeDir="false" afterPath="$PROJECT_DIR$/adduser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alterDialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/alterDialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alteruser.py" beforeDir="false" afterPath="$PROJECT_DIR$/alteruser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/sentence/张三是一位大学老师.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/sentence/我在图书馆学习.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/sentence/这是我的眼睛.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/a.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ai.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/an.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ang.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ao.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/b.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/c.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ch.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/chi.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ci.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/d.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/e.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ei.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/en.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/eng.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/er.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/f.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/g.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/h.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/i.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ie.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/in.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ing.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/iu.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/j.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/k.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/l.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/m.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/n.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/o.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ong.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ou.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/p.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/q.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/r.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ri.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/s.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/sh.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/shi.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/si.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/t.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/u.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ui.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/un.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/v.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ve.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/vn.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/w.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/wu.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/x.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/y.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ye.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/yi.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/yin.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/ying.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/yu.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/yuan.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/yue.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/yun.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/z.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/zh.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/zhi.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/vowel/zi.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/一位.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/图书馆.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/在.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/大学.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/学习.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/张三.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/我.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/我的.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/是.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/眼睛.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/老师.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/花朵.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/苹果.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/word/这.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conjunction2scentence.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/图书馆.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/大学.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/学习.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/眼睛.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/老师.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/苹果.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/运动.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_head/pa_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_s0.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_s1.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_s2.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_v0.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_v1.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_v2.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_v3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_v4.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_v5.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w0.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w1.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w10.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w11.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w12.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w13.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w2.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w3.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w4.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w5.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w7.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w8.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pa_video/pa0_w9.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sqlsequence.py" beforeDir="false" afterPath="$PROJECT_DIR$/sqlsequence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vedioplay.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vowel.py" beforeDir="false" afterPath="$PROJECT_DIR$/vowel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/word.py" beforeDir="false" afterPath="$PROJECT_DIR$/word.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordsentence.py" beforeDir="false" afterPath="$PROJECT_DIR$/wordsentence.py" afterDir="false" />
+    </list>
+    <list id="d6d15fbe-7e8d-4bb0-9539-c02f047390be" name="增加了“添加患者”及“删除患者”" comment="增加了“查看修改患者”" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="2BCz29CPFjBnfPQycQFOtGRVXtm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\code\gitproject\PyQt-Sqlite-Project-CURD-master" />
+      <recent name="E:\code\gitproject\PyQt-Sqlite-Project-CURD-master\PyQt-Sqlite-Project-CURD-master" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\code\gitproject\PyQt-Sqlite-Project-CURD-master" />
+      <recent name="E:\code\gitproject\PyQt-Sqlite-Project-CURD-master\PyQt-Sqlite-Project-CURD-master" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.click_here">
+    <configuration name="bin" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="E:\soft\ana\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_HOME_DIR$/jbr" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_HOME_DIR$/jbr/bin" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="click_here" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyQt-Sqlite-Project-CURD-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/click_here.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="conjunction2scentence" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyQt-Sqlite-Project-CURD-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/conjunction2scentence.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyQt-Sqlite-Project-CURD-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="vowel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyQt-Sqlite-Project-CURD-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/vowel.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="word" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyQt-Sqlite-Project-CURD-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/word.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.bin" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.word" />
+      <item itemvalue="Python.vowel" />
+      <item itemvalue="Python.conjunction2scentence" />
+      <item itemvalue="Python.click_here" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.click_here" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.conjunction2scentence" />
+        <item itemvalue="Python.vowel" />
+        <item itemvalue="Python.word" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="1c4a4195-686c-4be4-882c-7c0b1eeff6ff" name="默认变更列表" comment="" />
+      <changelist id="d6d15fbe-7e8d-4bb0-9539-c02f047390be" name="增加了“添加患者”及“删除患者”" comment="" />
+      <created>1656424647226</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1656424647226</updated>
+      <workItem from="1656424649496" duration="4862000" />
+      <workItem from="1656466671176" duration="21361000" />
+      <workItem from="1656559534178" duration="22072000" />
+      <workItem from="1656643342865" duration="11104000" />
+      <workItem from="1656744659660" duration="5192000" />
+      <workItem from="1656808760368" duration="15217000" />
+      <workItem from="1656860376629" duration="5604000" />
+      <workItem from="1656902133231" duration="31492000" />
+      <workItem from="1656981166605" duration="608000" />
+      <workItem from="1657071014837" duration="22857000" />
+      <workItem from="1657107184272" duration="3717000" />
+      <workItem from="1657242745286" duration="1258000" />
+      <workItem from="1657511916347" duration="1189000" />
+      <workItem from="1658397254157" duration="666000" />
+      <workItem from="1658452840276" duration="4718000" />
+      <workItem from="1658989999296" duration="24000" />
+      <workItem from="1659011040764" duration="610000" />
+      <workItem from="1659025512228" duration="1252000" />
+      <workItem from="1659064782186" duration="9175000" />
+      <workItem from="1659078181092" duration="3115000" />
+      <workItem from="1659419260213" duration="15000" />
+      <workItem from="1702627768594" duration="2865000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add files via upload">
+      <created>1656424708118</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1656424708118</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add files via upload">
+      <created>1656429082761</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1656429082761</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add files via upload">
+      <created>1656429199517</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1656429199517</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add files via upload">
+      <created>1656429473391</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1656429473391</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add files via upload">
+      <created>1656512562522</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1656512562522</updated>
+    </task>
+    <task id="LOCAL-00006" summary="修正了查找问题；&#10;增加了菜单栏；&#10;增加了表单点击事件（选择患者并显示，读取患者编号）">
+      <created>1656512738426</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1656512738426</updated>
+    </task>
+    <task id="LOCAL-00007" summary="增加了“添加患者”及“删除患者”">
+      <created>1656589659948</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1656589659948</updated>
+    </task>
+    <task id="LOCAL-00008" summary="增加了“添加患者”及“删除患者”">
+      <created>1656589692162</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1656589692162</updated>
+    </task>
+    <task id="LOCAL-00009" summary="增加了“查看修改患者”">
+      <created>1656665238039</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1656665238039</updated>
+    </task>
+    <task id="LOCAL-00010" summary="增加了“查看修改患者”">
+      <created>1656665355590</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1656665355590</updated>
+    </task>
+    <task id="LOCAL-00011" summary="增加了“查看修改患者”">
+      <created>1656665461333</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1656665461333</updated>
+    </task>
+    <task id="LOCAL-00012" summary="修正上次提交的错误">
+      <created>1656666040149</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1656666040149</updated>
+    </task>
+    <task id="LOCAL-00013" summary="窗口切换，用户管理">
+      <created>1656839894487</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1656839894487</updated>
+    </task>
+    <task id="LOCAL-00014" summary="窗口切换，用户管理">
+      <created>1656947447539</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1656947447539</updated>
+    </task>
+    <task id="LOCAL-00015" summary="完整的连词成句界面功能实现，修正了数据库sentence_word表外键错误，增加了数据">
+      <created>1656947540729</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1656947540729</updated>
+    </task>
+    <task id="LOCAL-00016" summary="词语界面">
+      <created>1656955176749</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1656955176749</updated>
+    </task>
+    <task id="LOCAL-00017" summary="完整版">
+      <created>1657112494504</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1657112494504</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add files via upload" />
+    <MESSAGE value="修正了查找问题；&#10;增加了菜单栏；&#10;增加了表单点击事件（选择患者并显示，读取患者编号）" />
+    <MESSAGE value="增加了“添加患者”及“删除患者”" />
+    <MESSAGE value="增加了“查看修改患者”" />
+    <MESSAGE value="修正上次提交的错误" />
+    <MESSAGE value="窗口切换，用户管理" />
+    <MESSAGE value="完整的连词成句界面功能实现，修正了数据库sentence_word表外键错误，增加了数据" />
+    <MESSAGE value="词语界面" />
+    <MESSAGE value="完整版" />
+    <option name="LAST_COMMIT_MESSAGE" value="完整版" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$vowel.coverage" NAME="vowel 覆盖结果" MODIFIED="1659072627444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$addPaDialog.coverage" NAME="addPaDialog 覆盖结果" MODIFIED="1656580344044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$alteruser.coverage" NAME="alteruser 覆盖结果" MODIFIED="1656837817294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PyQt-Sqlite-Project-CURD-master" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$word.coverage" NAME="word 覆盖结果" MODIFIED="1659072262795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$backpack.coverage" NAME="backpack 覆盖结果" MODIFIED="1657103358645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$addPaDialog__1_.coverage" NAME="addPaDialog (1) 覆盖结果" MODIFIED="1656603365676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PyQt-Sqlite-Project-CURD-master" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$main.coverage" NAME="main 覆盖结果" MODIFIED="1659078883534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$conjunction2scentence.coverage" NAME="conjunction2scentence 覆盖结果" MODIFIED="1659073659206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$train.coverage" NAME="train 覆盖结果" MODIFIED="1657097340775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$fullPlayDialog.coverage" NAME="fullPlayDialog 覆盖结果" MODIFIED="1659026825240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$management__1_.coverage" NAME="management (1) 覆盖结果" MODIFIED="1656838379893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PyQt-Sqlite-Project-CURD-master" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$sqlsequence.coverage" NAME="sqlsequence 覆盖结果" MODIFIED="1656427812277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PyQt-Sqlite-Project-CURD-master" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$management.coverage" NAME="management 覆盖结果" MODIFIED="1656834479569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$alterDialog.coverage" NAME="alterDialog 覆盖结果" MODIFIED="1656837810982" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PyQt-Sqlite-Project-CURD-master" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$adduser.coverage" NAME="adduser 覆盖结果" MODIFIED="1656829606800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PyQt-Sqlite-Project-CURD-master" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$addDialog__1_.coverage" NAME="addDialog (1) 覆盖结果" MODIFIED="1656759580909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PyQt-Sqlite-Project-CURD-master" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$click_here.coverage" NAME="click_here 覆盖结果" MODIFIED="1702629092868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$paManagement.coverage" NAME="paManagement 覆盖结果" MODIFIED="1656589561736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PyQt-Sqlite-Project-CURD-master" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$temp.coverage" NAME="temp 覆盖结果" MODIFIED="1656863311634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PyQt-Sqlite-Project-CURD-master" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$wordsentence.coverage" NAME="wordsentence 覆盖结果" MODIFIED="1656949072858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PyQt-Sqlite-Project-CURD-master" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$word__1_.coverage" NAME="word (1) 覆盖结果" MODIFIED="1657089381122" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PyQt_Sqlite_Project_CURD_master$wordsentence__1_.coverage" NAME="wordsentence (1) 覆盖结果" MODIFIED="1659071542904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

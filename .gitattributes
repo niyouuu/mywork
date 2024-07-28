@@ -1,0 +1,5 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+MockingBird/data/ckpt/synthesizer/ferret_70k.pt filter=lfs diff=lfs merge=lfs -text
+MockingBird/data/ckpt/vocoder/pretrained/pretrained.pt filter=lfs diff=lfs merge=lfs -text
+Real-Time-Voice-Cloning/saved_models/default/synthesizer.pt filter=lfs diff=lfs merge=lfs -text

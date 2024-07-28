@@ -1,0 +1,17 @@
+<RCC>
+  <qresource prefix="images">
+    <file>cha.png</file>
+    <file>deng.png</file>
+    <file>dianji.png</file>
+    <file>jiangzhang.png</file>
+    <file>logo.png</file>
+    <file>paizhao.png</file>
+    <file>yinpin.png</file>
+    <file>search.png</file>
+    <file>shipin.png</file>
+    <file>taolun.png</file>
+    <file>touxiang.png</file>
+    <file>touxiang2.png</file>
+    <file>zan.png</file>
+  </qresource>
+</RCC>

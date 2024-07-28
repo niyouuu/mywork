@@ -1,0 +1,545 @@
+Index: PyQt-Sqlite-Project-CURD-master/main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import qtawesome\r\nfrom PyQt5 import QtWidgets\r\nfrom PyQt5.QtCore import *\r\nfrom PyQt5.QtSql import *\r\nfrom PyQt5.QtWidgets import *\r\nfrom PyQt5.QtGui import *\r\n#from PyQt5.QtWebEngineWidgets import QWebEngineView\r\n#from PyQt5.QtPrintSupport import *\r\nimport sys,sqlite3,time\r\n\r\nimport os\r\n\r\nclass InsertDialog(QDialog):\r\n    def __init__(self, *args, **kwargs):\r\n        super(InsertDialog, self).__init__(*args, **kwargs)\r\n\r\n        self.QBtn = QPushButton()\r\n        self.QBtn.setText(\"Register\")\r\n\r\n        self.setWindowTitle(\"Add Student\")\r\n        self.setFixedWidth(300)\r\n        self.setFixedHeight(250)\r\n\r\n        self.QBtn.clicked.connect(self.addstudent)\r\n\r\n        layout = QVBoxLayout()\r\n\r\n        self.nameinput = QLineEdit()\r\n        self.nameinput.setPlaceholderText(\"Name\")\r\n        layout.addWidget(self.nameinput)\r\n\r\n        self.branchinput = QComboBox()\r\n        self.branchinput.addItem(\"Mechanical\")\r\n        self.branchinput.addItem(\"Civil\")\r\n        self.branchinput.addItem(\"Electrical\")\r\n        self.branchinput.addItem(\"Electronics and Communication\")\r\n        self.branchinput.addItem(\"Computer Science\")\r\n        self.branchinput.addItem(\"Information Technology\")\r\n        layout.addWidget(self.branchinput)\r\n\r\n        self.seminput = QComboBox()\r\n        self.seminput.addItem(\"1\")\r\n        self.seminput.addItem(\"2\")\r\n        self.seminput.addItem(\"3\")\r\n        self.seminput.addItem(\"4\")\r\n        self.seminput.addItem(\"5\")\r\n        self.seminput.addItem(\"6\")\r\n        self.seminput.addItem(\"7\")\r\n        self.seminput.addItem(\"8\")\r\n        layout.addWidget(self.seminput)\r\n\r\n        self.mobileinput = QLineEdit()\r\n        self.mobileinput.setPlaceholderText(\"Mobile\")\r\n        self.mobileinput.setInputMask('99999 99999')\r\n        layout.addWidget(self.mobileinput)\r\n\r\n        self.addressinput = QLineEdit()\r\n        self.addressinput.setPlaceholderText(\"Address\")\r\n        layout.addWidget(self.addressinput)\r\n\r\n        layout.addWidget(self.QBtn)\r\n        self.setLayout(layout)\r\n\r\n    def addstudent(self):\r\n\r\n        name = \"\"\r\n        branch = \"\"\r\n        sem = -1\r\n        mobile = -1\r\n        address = \"\"\r\n\r\n        name = self.nameinput.text()\r\n        branch = self.branchinput.itemText(self.branchinput.currentIndex())\r\n        sem = self.seminput.itemText(self.seminput.currentIndex())\r\n        mobile = self.mobileinput.text()\r\n        address = self.addressinput.text()\r\n        try:\r\n            self.conn = sqlite3.connect(\"database.db\")\r\n            self.c = self.conn.cursor()\r\n            self.c.execute(\"INSERT INTO students (name,branch,sem,Mobile,address) VALUES (?,?,?,?,?)\",(name,branch,sem,mobile,address))\r\n            self.conn.commit()\r\n            self.c.close()\r\n            self.conn.close()\r\n            QMessageBox.information(QMessageBox(),'Successful','Student is added successfully to the database.')\r\n            self.close()\r\n        except Exception:\r\n            QMessageBox.warning(QMessageBox(), 'Error', 'Could not add student to the database.')\r\n\r\nclass SearchDialog(QDialog):\r\n    def __init__(self, *args, **kwargs):\r\n        super(SearchDialog, self).__init__(*args, **kwargs)\r\n\r\n        self.QBtn = QPushButton()\r\n        self.QBtn.setText(\"Search\")\r\n\r\n        self.setWindowTitle(\"Search user\")\r\n        self.setFixedWidth(300)\r\n        self.setFixedHeight(100)\r\n        self.QBtn.clicked.connect(self.searchstudent)\r\n        layout = QVBoxLayout()\r\n\r\n        self.searchinput = QLineEdit()\r\n        self.onlyInt = QIntValidator()\r\n        self.searchinput.setValidator(self.onlyInt)\r\n        self.searchinput.setPlaceholderText(\"Roll No.\")\r\n        layout.addWidget(self.searchinput)\r\n        layout.addWidget(self.QBtn)\r\n        self.setLayout(layout)\r\n\r\n    def searchstudent(self):\r\n\r\n        searchrol = \"\"\r\n        searchrol = self.searchinput.text()\r\n        try:\r\n            self.conn = sqlite3.connect(\"database.db\")\r\n            self.c = self.conn.cursor()\r\n            result = self.c.execute(\"SELECT * from students WHERE roll=\"+str(searchrol))\r\n            row = result.fetchone()\r\n            serachresult = \"Rollno : \"+str(row[0])+'\\n'+\"Name : \"+str(row[1])+'\\n'+\"Branch : \"+str(row[2])+'\\n'+\"Sem : \"+str(row[3])+'\\n'+\"Address : \"+str(row[4])\r\n            QMessageBox.information(QMessageBox(), 'Successful', serachresult)\r\n            self.conn.commit()\r\n            self.c.close()\r\n            self.conn.close()\r\n        except Exception:\r\n            QMessageBox.warning(QMessageBox(), 'Error', 'Could not Find student from the database.')\r\n\r\nclass DeleteDialog(QDialog):\r\n    def __init__(self, *args, **kwargs):\r\n        super(DeleteDialog, self).__init__(*args, **kwargs)\r\n\r\n        self.QBtn = QPushButton()\r\n        self.QBtn.setText(\"Delete\")\r\n\r\n        self.setWindowTitle(\"Delete Student\")\r\n        self.setFixedWidth(300)\r\n        self.setFixedHeight(100)\r\n        self.QBtn.clicked.connect(self.deletestudent)\r\n        layout = QVBoxLayout()\r\n\r\n        self.deleteinput = QLineEdit()\r\n        self.onlyInt = QIntValidator()\r\n        self.deleteinput.setValidator(self.onlyInt)\r\n        self.deleteinput.setPlaceholderText(\"Roll No.\")\r\n        layout.addWidget(self.deleteinput)\r\n        layout.addWidget(self.QBtn)\r\n        self.setLayout(layout)\r\n\r\n    def deletestudent(self):\r\n\r\n        delrol = \"\"\r\n        delrol = self.deleteinput.text()\r\n        try:\r\n            self.conn = sqlite3.connect(\"database.db\")\r\n            self.c = self.conn.cursor()\r\n            self.c.execute(\"DELETE from students WHERE roll=\"+str(delrol))\r\n            self.conn.commit()\r\n            self.c.close()\r\n            self.conn.close()\r\n            QMessageBox.information(QMessageBox(),'Successful','Deleted From Table Successful')\r\n            self.close()\r\n        except Exception:\r\n            QMessageBox.warning(QMessageBox(), 'Error', 'Could not Delete student from the database.')\r\n\r\nclass LoginDialog(QDialog):\r\n    def __init__(self, *args, **kwargs):\r\n        super(LoginDialog, self).__init__(*args, **kwargs)\r\n\r\n        self.resize(900,600)\r\n        self.setWindowTitle(\"欢迎登陆康复系统\")\r\n        self.signUpLabel = QLabel(\"失语症康复训练系统\")\r\n        self.signUpLabel.setAlignment(Qt.AlignCenter)\r\n        self.signUpLabel.setFixedWidth(400)\r\n        self.signUpLabel.setFixedHeight(100)\r\n        font = QFont()\r\n        font.setPixelSize(36)\r\n        lineEditFont = QFont()\r\n        lineEditFont.setPixelSize(16)\r\n        self.signUpLabel.setFont(font)\r\n\r\n        self.layout = QVBoxLayout()\r\n        self.layout.addWidget(self.signUpLabel, Qt.AlignHCenter)\r\n        self.setLayout(self.layout)\r\n        # table\r\n        self.formlayout = QFormLayout()\r\n        font.setPixelSize(18)\r\n\r\n        # row 1\r\n        self.namelabel=QLabel(\"姓    名: \")\r\n        self.namelabel.setFont(font)\r\n        self.nameinput = QLineEdit()\r\n        self.nameinput.setFixedWidth(180)\r\n        self.nameinput.setFixedHeight(32)\r\n        self.nameinput.setFont(lineEditFont)\r\n        self.nameinput.setMaxLength(10)\r\n        self.formlayout.addRow(self.namelabel, self.nameinput)\r\n        # row 2\r\n        self.passlabel = QLabel(\"密    码: \")\r\n        self.passlabel.setFont(font)\r\n        self.passinput = QLineEdit()\r\n        self.passinput.setEchoMode(QLineEdit.Password)\r\n        self.passinput.setFixedWidth(180)\r\n        self.passinput.setFixedHeight(32)\r\n        self.passinput.setFont(lineEditFont)\r\n        self.passinput.setMaxLength(20)\r\n        self.formlayout.addRow(self.passlabel, self.passinput)\r\n\r\n        self.QBtn = QPushButton(\"登 录\")\r\n        self.QBtn.setFixedWidth(120)\r\n        self.QBtn.setFixedHeight(30)\r\n        self.QBtn.setFont(font)\r\n        self.QBtn.clicked.connect(self.login)\r\n        self.formlayout.addRow(\"\", self.QBtn)\r\n\r\n        title = QLabel(\"Login\")\r\n        font = title.font()\r\n        font.setPointSize(16)\r\n        title.setFont(font)\r\n\r\n        widget = QWidget()\r\n        widget.setLayout(self.formlayout)\r\n        widget.setFixedHeight(250)\r\n        widget.setFixedWidth(300)\r\n        self.Hlayout = QHBoxLayout()\r\n        self.Hlayout.addWidget(widget, Qt.AlignCenter)\r\n        widget = QWidget()\r\n        widget.setLayout(self.Hlayout)\r\n        self.layout.addWidget(widget, Qt.AlignHCenter)\r\n        #layout.addWidget(title)\r\n        #layout.addWidget(self.nameinput)\r\n        #layout.addWidget(self.passinput)\r\n        #layout.addWidget(self.QBtn)\r\n        #self.setLayout(layout)\r\n\r\n    def login(self):\r\n        username = \"\"\r\n        username = self.nameinput.text()\r\n        password = \"\"\r\n        password = self.passinput.text()\r\n        exist=0\r\n        try:\r\n            self.conn = sqlite3.connect(\"database.db\")\r\n            self.c = self.conn.cursor()\r\n            result = self.c.execute(\"SELECT * from users WHERE user_name=? AND user_pw=?\" ,(username,password))\r\n            row = result.fetchone()\r\n            # print(row)\r\n            if not row is None:\r\n                self.accept()\r\n            else:\r\n                QMessageBox.warning(QMessageBox(), 'Error', 'Could not Find student from the database.')\r\n            self.conn.commit()\r\n            self.c.close()\r\n            self.conn.close()\r\n        except Exception:\r\n            return\r\n\r\nclass SearchPatient(QDialog):\r\n    def __init__(self, *args, **kwargs):\r\n        super(SearchPatient, self).__init__(*args, **kwargs)\r\n\r\n        self.QBtn = QPushButton()\r\n        self.QBtn.setText(\"Search\")\r\n\r\n        self.setWindowTitle(\"Search user\")\r\n        self.setFixedWidth(300)\r\n        self.setFixedHeight(100)\r\n        self.QBtn.clicked.connect(self.searchpatient)\r\n        layout = QVBoxLayout()\r\n\r\n        self.searchinput = QLineEdit()\r\n        self.onlyInt = QIntValidator()\r\n        # self.searchinput.setValidator(self.onlyInt)\r\n        self.searchinput.setPlaceholderText(\"姓名/身份证号\")\r\n        layout.addWidget(self.searchinput)\r\n        layout.addWidget(self.QBtn)\r\n        self.setLayout(layout)\r\n\r\n    def searchpatient(self):\r\n\r\n        searchrol = \"\"\r\n        searchrol = self.searchinput.text()\r\n        try:\r\n            self.conn = sqlite3.connect(\"database.db\")\r\n            self.c = self.conn.cursor()\r\n            result = self.c.execute(\"SELECT * from patient WHERE pa_name like ? OR pa_id like ?\",(\"%\"+searchrol+\"%\",\"%\"+searchrol+\"%\"))\r\n            row = result.fetchone()\r\n            serachresult = \"姓名 : \"+str(row[1])+'\\n'+\"性别 : \"+str(row[2])+'\\n'+\"年龄 : \"+str(row[3])+'\\n'+\"身份证号 : \"+str(row[4])\r\n            QMessageBox.information(QMessageBox(), 'Successful', serachresult)\r\n            self.conn.commit()\r\n            self.c.close()\r\n            self.conn.close()\r\n        except Exception:\r\n            return\r\n\r\n\r\n\r\n\r\nclass AboutDialog(QDialog):\r\n    def __init__(self, *args, **kwargs):\r\n        super(AboutDialog, self).__init__(*args, **kwargs)\r\n\r\n        self.setFixedWidth(300)\r\n        self.setFixedHeight(250)\r\n\r\n        QBtn = QDialogButtonBox.Ok  # No cancel\r\n        self.buttonBox = QDialogButtonBox(QBtn)\r\n        self.buttonBox.accepted.connect(self.accept)\r\n        self.buttonBox.rejected.connect(self.reject)\r\n\r\n        layout = QVBoxLayout()\r\n\r\n        title = QLabel(\"STDMGMT\")\r\n        font = title.font()\r\n        font.setPointSize(20)\r\n        title.setFont(font)\r\n\r\n        labelpic = QLabel()\r\n        pixmap = QPixmap('icon/logo.png')\r\n        pixmap = pixmap.scaledToWidth(275)\r\n        labelpic.setPixmap(pixmap)\r\n        labelpic.setFixedHeight(150)\r\n\r\n        layout.addWidget(title)\r\n\r\n        layout.addWidget(QLabel(\"Version 5.3.2\"))\r\n        layout.addWidget(QLabel(\"Copyright 2018 CYB Inc.\"))\r\n        layout.addWidget(labelpic)\r\n\r\n\r\n        layout.addWidget(self.buttonBox)\r\n\r\n        self.setLayout(layout)\r\n\r\n\r\nclass MainWindow(QMainWindow):\r\n    def __init__(self, *args, **kwargs):\r\n        super(MainWindow, self).__init__(*args, **kwargs)\r\n\r\n        self.conn = sqlite3.connect(\"database.db\")\r\n        self.c = self.conn.cursor()\r\n        self.c.execute(\"CREATE TABLE IF NOT EXISTS students(roll INTEGER PRIMARY KEY AUTOINCREMENT ,name TEXT,branch TEXT,sem INTEGER,mobile INTEGER,address TEXT)\")\r\n        self.c.close()\r\n\r\n        title_meanu=self.menuBar().addMenu(\"&康复训练\")\r\n        index_meanu=self.menuBar().addMenu(\"&首页\")\r\n        task_meanu = self.menuBar().addMenu(\"&训练任务\")\r\n        patient_meanu = self.menuBar().addMenu(\"&患者管理\")\r\n        sys_meanu = self.menuBar().addMenu(\"&系统管理\")\r\n        file_menu = self.menuBar().addMenu(\"&File\")\r\n\r\n        help_menu = self.menuBar().addMenu(\"&About\")\r\n\r\n        self.setWindowTitle(\"Student Management CRUD\")\r\n        self.setMinimumSize(800, 600)\r\n\r\n        self.tableWidget = QTableWidget()\r\n        self.setCentralWidget(self.tableWidget)\r\n        self.tableWidget.setAlternatingRowColors(True)\r\n        self.tableWidget.setColumnCount(4)\r\n        self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)\r\n        self.tableWidget.horizontalHeader().setSortIndicatorShown(False)\r\n        self.tableWidget.horizontalHeader().setStretchLastSection(True)\r\n        self.tableWidget.verticalHeader().setVisible(False)\r\n        self.tableWidget.verticalHeader().setCascadingSectionResizes(False)\r\n        self.tableWidget.verticalHeader().setStretchLastSection(False)\r\n        self.tableWidget.setHorizontalHeaderLabels(( \"姓名\", \"性别\", \"年龄\", \"身份证号\"))\r\n\r\n        toolbar = QToolBar()\r\n        toolbar.setMovable(False)\r\n        self.addToolBar(toolbar)\r\n\r\n        statusbar = QStatusBar()\r\n        self.setStatusBar(statusbar)\r\n\r\n        btn_ac_adduser = QAction(QIcon(\"icon/add.png\"), \"Add Student\", self)\r\n        btn_ac_adduser.triggered.connect(self.insert)\r\n        btn_ac_adduser.setStatusTip(\"Add Student\")\r\n        toolbar.addAction(btn_ac_adduser)\r\n\r\n        btn_ac_refresh = QAction(QIcon(\"icon/refresh.png\"),\"Refresh\",self)\r\n        btn_ac_refresh.triggered.connect(self.loaddata)\r\n        btn_ac_refresh.setStatusTip(\"Refresh Table\")\r\n        toolbar.addAction(btn_ac_refresh)\r\n\r\n        btn_ac_search = QAction(QIcon(\"icon/search.png\"), \"Search\", self)\r\n        btn_ac_search.triggered.connect(self.search)\r\n        btn_ac_search.setStatusTip(\"Search User\")\r\n        toolbar.addAction(btn_ac_search)\r\n\r\n        btn_ac_delete = QAction(QIcon(\"icon/trash.png\"), \"Delete\", self)\r\n        btn_ac_delete.triggered.connect(self.delete)\r\n        btn_ac_delete.setStatusTip(\"Delete User\")\r\n        toolbar.addAction(btn_ac_delete)\r\n\r\n        adduser_action = QAction(QIcon(\"icon/add.png\"),\"Insert Student\", self)\r\n        adduser_action.triggered.connect(self.insert)\r\n        file_menu.addAction(adduser_action)\r\n\r\n        searchuser_action = QAction(QIcon(\"icon/search.png\"), \"Search Student\", self)\r\n        searchuser_action.triggered.connect(self.search)\r\n        file_menu.addAction(searchuser_action)\r\n\r\n        deluser_action = QAction(QIcon(\"icon/trash.png\"), \"Delete\", self)\r\n        deluser_action.triggered.connect(self.delete)\r\n        file_menu.addAction(deluser_action)\r\n\r\n\r\n        about_action = QAction(QIcon(\"icon/info.png\"),\"Developer\", self)\r\n        about_action.triggered.connect(self.about)\r\n        help_menu.addAction(about_action)\r\n\r\n    def loaddata(self):\r\n        self.connection = sqlite3.connect(\"database.db\")\r\n        query = \"SELECT pa_name,pa_gender,pa_age,pa_id FROM patient\"\r\n        result = self.connection.execute(query)\r\n        self.tableWidget.setRowCount(0)\r\n        for row_number, row_data in enumerate(result):\r\n            self.tableWidget.insertRow(row_number)\r\n            for column_number, data in enumerate(row_data):\r\n                self.tableWidget.setItem(row_number, column_number,QTableWidgetItem(str(data)))\r\n        self.connection.close()\r\n\r\n    def handlePaintRequest(self, printer):\r\n        document = QTextDocument()\r\n        cursor = QTextCursor(document)\r\n        model = self.table.model()\r\n        table = cursor.insertTable(\r\n            model.rowCount(), model.columnCount())\r\n        for row in range(table.rows()):\r\n            for column in range(table.columns()):\r\n                cursor.insertText(model.item(row, column).text())\r\n                cursor.movePosition(QTextCursor.NextCell)\r\n        document.print_(printer)\r\n\r\n    def insert(self):\r\n        dlg = InsertDialog()\r\n        dlg.exec_()\r\n\r\n    def delete(self):\r\n        dlg = DeleteDialog()\r\n        dlg.exec_()\r\n\r\n    def search(self):\r\n        dlg = SearchPatient()\r\n        dlg.exec_()\r\n\r\n    def about(self):\r\n        dlg = AboutDialog()\r\n        dlg.exec_()\r\n\r\nclass IndexWindow(QWidget):\r\n    def __init__(self, *args, **kwargs):\r\n        super(IndexWindow, self).__init__(*args, **kwargs)\r\n        self.resize(700, 500)\r\n        self.setWindowTitle(\"欢迎使用康复训练系统\")\r\n        # 查询模型\r\n        self.queryModel = None\r\n        # 数据表\r\n        self.tableView = None\r\n        # 当前页\r\n        self.currentPage = 0\r\n        # 总页数\r\n        self.totalPage = 0\r\n        # 总记录数\r\n        self.totalRecord = 0\r\n        # 每页数据数\r\n        self.pageRecord = 10\r\n        self.setUpUI()\r\n\r\n    def setUpUI(self):\r\n        self.conn = sqlite3.connect(\"database.db\")\r\n        self.c = self.conn.cursor()\r\n        # 添加sql语句\r\n        self.c.close()\r\n        self.setFixedSize(960, 700)\r\n\r\n        #选择患者\r\n        self.layout = QVBoxLayout()\r\n        self.indexlayout=QHBoxLayout()\r\n        self.pa_layout=QHBoxLayout()\r\n        self.Hlayout1 = QHBoxLayout()\r\n        self.Hlayout2 = QHBoxLayout()\r\n\r\n        #导航栏\r\n        # self.index_widget = QtWidgets.QWidget()  # 创建左侧部件\r\n        # self.index_widget.setObjectName('index_widget')\r\n        # self.index_widget.setLayout(self.indexlayout) # 设置左侧部件布局为网格\r\n\r\n        self.titlelabel=QLabel(\"康复训练\")\r\n        font = self.titlelabel.font()\r\n        font.setPointSize(25)\r\n        font.setBold(1)\r\n        font.setFamily(\"黑体\")\r\n        self.titlelabel.setFont(font)\r\n        index_btn_len=150\r\n        self.index_btn_1 = QtWidgets.QPushButton(\"首页\")\r\n        self.index_btn_1.setObjectName('index_button')\r\n        self.index_btn_1.setFixedWidth(index_btn_len)\r\n        self.index_btn_2 = QtWidgets.QPushButton(\"训练任务\")\r\n        self.index_btn_2.setObjectName('index_button')\r\n        self.index_btn_2.setFixedWidth(index_btn_len)\r\n        self.index_btn_3 = QtWidgets.QPushButton(\"患者管理\")\r\n        self.index_btn_3.setObjectName('index_button')\r\n        self.index_btn_3.setFixedWidth(index_btn_len)\r\n        self.index_btn_4 = QtWidgets.QPushButton(\"系统管理\")\r\n        self.index_btn_4.setObjectName('index_button')\r\n        self.index_btn_4.setFixedWidth(index_btn_len)\r\n        self.indexlayout.addWidget(self.titlelabel)\r\n        self.indexlayout.addWidget(self.index_btn_1)\r\n        self.indexlayout.addWidget(self.index_btn_2)\r\n        self.indexlayout.addWidget(self.index_btn_3)\r\n        self.indexlayout.addWidget(self.index_btn_4)\r\n\r\n        # 当前已选择患者\r\n\r\n        self.temp_pa_no=\"\" # 患者编号，读取编号的函数在func_test()中\r\n        self.selected_pa_label=QLabel(\"当前选择的患者为：无\")\r\n        self.pa_layout.addWidget(self.selected_pa_label)\r\n\r\n        # Hlayout1，查询功能\r\n        self.searchEdit = QLineEdit()\r\n        self.searchEdit.setFixedHeight(32)\r\n        font = QFont()\r\n        font.setPixelSize(15)\r\n        self.searchEdit.setFont(font)\r\n\r\n        self.searchButton = QPushButton(\"查询\")\r\n        self.searchButton.setFixedHeight(32)\r\n        self.searchButton.setFont(font)\r\n        self.searchButton.setIcon(QIcon(QPixmap(\"./images/search.png\")))\r\n\r\n        self.condisionComboBox = QComboBox()\r\n        searchCondision = ['按姓名查询', '按身份证号查询']\r\n        self.condisionComboBox.setFixedHeight(32)\r\n        self.condisionComboBox.setFont(font)\r\n        self.condisionComboBox.addItems(searchCondision)\r\n\r\n        self.Hlayout1.addWidget(self.searchEdit)\r\n        self.Hlayout1.addWidget(self.searchButton)\r\n        self.Hlayout1.addWidget(self.condisionComboBox)\r\n\r\n        # Hlayout2初始化，翻页功能\r\n        self.jumpToLabel = QLabel(\"跳转到第\")\r\n        self.pageEdit = QLineEdit()\r\n        self.pageEdit.setFixedWidth(30)\r\n        s = \"/\" + str(self.totalPage) + \"页\"\r\n        self.pageLabel = QLabel(s)\r\n        self.jumpToButton = QPushButton(\"跳转\")\r\n        self.prevButton = QPushButton(\"前一页\")\r\n        self.prevButton.setFixedWidth(60)\r\n        self.backButton = QPushButton(\"后一页\")\r\n        self.backButton.setFixedWidth(60)\r\n\r\n        Hlayout = QHBoxLayout()\r\n        Hlayout.addWidget(self.jumpToLabel)\r\n        Hlayout.addWidget(self.pageEdit)\r\n        Hlayout.addWidget(self.pageLabel)\r\n        Hlayout.addWidget(self.jumpToButton)\r\n        Hlayout.addWidget(self.prevButton)\r\n        Hlayout.addWidget(self.backButton)\r\n        widget = QWidget()\r\n        widget.setLayout(Hlayout)\r\n        widget.setFixedWidth(300)\r\n        self.Hlayout2.addWidget(widget)\r\n\r\n        # tableView\r\n        # 患者信息\r\n        self.db = QSqlDatabase.addDatabase(\"QSQLITE\")\r\n        self.db.setDatabaseName('database.db')\r\n        self.db.open()\r\n        self.tableView = QTableView()\r\n        self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行\r\n        self.tableView.setSelectionMode(QAbstractItemView.SingleSelection)  # 设置只能选中一行\r\n        self.func_mappingSignal()\r\n        index = self.tableView.currentIndex()  # 取得当前选中行的index\r\n        # self.model = QStandardItemModel()\r\n        # self.tableView.setModel(self.model)\r\n        # self.model = QStandardItemModel(5, 3)  # 创建一个标准的数据源model\r\n        # self.model.setHorizontalHeaderLabels([\"id\", \"姓名\", \"年龄\"])  # 设置表格的表头名称\r\n        # model=self.tableView.model()\r\n        # print(model.itemData(model.index(index.row(), 0)))\r\n        self.tableView.horizontalHeader().setStretchLastSection(True)\r\n        self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)\r\n        self.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)\r\n        self.queryModel = QSqlQueryModel()\r\n        self.tableView.setModel(self.queryModel)\r\n        self.queryModel.setHeaderData(0, Qt.Horizontal, \"姓名\")\r\n        self.queryModel.setHeaderData(1, Qt.Horizontal, \"性别\")\r\n        self.queryModel.setHeaderData(2, Qt.Horizontal, \"年龄\")\r\n        self.queryModel.setHeaderData(3, Qt.Horizontal, \"身份证号\")\r\n\r\n        self.layout.addLayout(self.indexlayout)\r\n        self.layout.addLayout(self.pa_layout)\r\n        self.layout.addLayout(self.Hlayout1)\r\n        self.layout.addWidget(self.tableView)\r\n        self.layout.addLayout(self.Hlayout2)\r\n        self.setLayout(self.layout)\r\n        self.searchButton.clicked.connect(self.searchButtonClicked)\r\n        self.prevButton.clicked.connect(self.prevButtonClicked)\r\n        self.backButton.clicked.connect(self.backButtonClicked)\r\n        self.jumpToButton.clicked.connect(self.jumpToButtonClicked)\r\n        self.searchEdit.returnPressed.connect(self.searchButtonClicked)\r\n\r\n    def func_mappingSignal(self):\r\n        self.tableView.clicked.connect(self.func_test)\r\n\r\n    def func_test(self, item):\r\n        # http://www.python-forum.org/viewtopic.php?f=11&t=16817\r\n        cellContent = item.data()\r\n        print(cellContent)  # test\r\n        sf = \"You clicked on {0}x{1}\".format(item.column(), item.row())\r\n        print(sf)\r\n        # 获取患者名字\r\n        NewIndex = self.tableView.currentIndex().siblingAtColumn(1)\r\n        Name = NewIndex.data()\r\n        self.selected_pa_label.setText(\"当前选择的患者为：\" + Name)\r\n        # 获取患者编号\r\n        # # pa_no_index = self.tableView.currentIndex().siblingAtColumn(0)\r\n        # #temp_pa_no = pa_no_index.data()\r\n    # 查询\r\n    def recordQuery(self, index):\r\n        queryCondition = \"\"\r\n        conditionChoice = self.condisionComboBox.currentText()\r\n        if (conditionChoice == \"按姓名查询\"):\r\n            conditionChoice = 'pa_name'\r\n        elif (conditionChoice == \"按身份证号查询\"):\r\n            conditionChoice = 'pa_id'\r\n\r\n        if (self.searchEdit.text() == \"\"):\r\n            queryCondition = \"select * from patient\"\r\n            self.queryModel.setQuery(queryCondition)\r\n            self.totalRecord = self.queryModel.rowCount()\r\n            self.totalPage = int((self.totalRecord + self.pageRecord - 1) / self.pageRecord)\r\n            label = \"/\" + str(int(self.totalPage)) + \"页\"\r\n            self.pageLabel.setText(label)\r\n            queryCondition = (\"select * from patient ORDER BY %s  limit %d,%d \" % (conditionChoice,index, self.pageRecord))\r\n            self.queryModel.setQuery(queryCondition)\r\n            self.setButtonStatus()\r\n            return\r\n\r\n        # 得到模糊查询条件\r\n        temp = self.searchEdit.text()\r\n        s = '%'\r\n        for i in range(0, len(temp)):\r\n            s = s + temp[i] + \"%\"\r\n        queryCondition = (\"SELECT * FROM patient WHERE %s LIKE '%s' ORDER BY %s \" % (\r\n            conditionChoice, s,conditionChoice))\r\n        self.queryModel.setQuery(queryCondition)\r\n        self.totalRecord = self.queryModel.rowCount()\r\n        # 当查询无记录时的操作\r\n        if(self.totalRecord==0):\r\n            print(QMessageBox.information(self,\"提醒\",\"查询无记录\",QMessageBox.Yes,QMessageBox.Yes))\r\n            queryCondition = \"select * from patient\"\r\n            self.queryModel.setQuery(queryCondition)\r\n            self.totalRecord = self.queryModel.rowCount()\r\n            self.totalPage = int((self.totalRecord + self.pageRecord - 1) / self.pageRecord)\r\n            label = \"/\" + str(int(self.totalPage)) + \"页\"\r\n            self.pageLabel.setText(label)\r\n            queryCondition = (\"select * from patient ORDER BY %s  limit %d,%d \" % (conditionChoice,index, self.pageRecord))\r\n            self.queryModel.setQuery(queryCondition)\r\n            self.setButtonStatus()\r\n            return\r\n        self.totalPage = int((self.totalRecord + self.pageRecord - 1) / self.pageRecord)\r\n        label = \"/\" + str(int(self.totalPage)) + \"页\"\r\n        self.pageLabel.setText(label)\r\n        queryCondition = (\"SELECT * FROM patient WHERE %s LIKE '%s' ORDER BY %s LIMIT %d,%d \" % (\r\n            conditionChoice, s, conditionChoice,index, self.pageRecord))\r\n        self.queryModel.setQuery(queryCondition)\r\n        self.setButtonStatus()\r\n        return\r\n\r\n    def setButtonStatus(self):\r\n        if (self.currentPage == self.totalPage):\r\n            self.prevButton.setEnabled(True)\r\n            self.backButton.setEnabled(False)\r\n        if (self.currentPage == 1):\r\n            self.backButton.setEnabled(True)\r\n            self.prevButton.setEnabled(False)\r\n        if (self.currentPage < self.totalPage and self.currentPage > 1):\r\n            self.prevButton.setEnabled(True)\r\n            self.backButton.setEnabled(True)\r\n\r\n    # 得到记录数\r\n    def getTotalRecordCount(self):\r\n        self.queryModel.setQuery(\"SELECT * FROM patient\")\r\n        self.totalRecord = self.queryModel.rowCount()\r\n        return\r\n\r\n    # 得到总页数\r\n    def getPageCount(self):\r\n        self.getTotalRecordCount()\r\n        # 上取整\r\n        self.totalPage = int((self.totalRecord + self.pageRecord - 1) / self.pageRecord)\r\n        return\r\n\r\n    # 点击查询\r\n    def searchButtonClicked(self):\r\n        self.currentPage = 1\r\n        self.pageEdit.setText(str(self.currentPage))\r\n        self.getPageCount()\r\n        s = \"/\" + str(int(self.totalPage)) + \"页\"\r\n        self.pageLabel.setText(s)\r\n        index = (self.currentPage - 1) * self.pageRecord\r\n        self.recordQuery(index)\r\n        return\r\n\r\n        # 向前翻页\r\n\r\n    def prevButtonClicked(self):\r\n        self.currentPage -= 1\r\n        if (self.currentPage <= 1):\r\n            self.currentPage = 1\r\n        self.pageEdit.setText(str(self.currentPage))\r\n        index = (self.currentPage - 1) * self.pageRecord\r\n        self.recordQuery(index)\r\n        return\r\n\r\n        # 向后翻页\r\n\r\n    def backButtonClicked(self):\r\n        self.currentPage += 1\r\n        if (self.currentPage >= int(self.totalPage)):\r\n            self.currentPage = int(self.totalPage)\r\n        self.pageEdit.setText(str(self.currentPage))\r\n        index = (self.currentPage - 1) * self.pageRecord\r\n        self.recordQuery(index)\r\n        return\r\n\r\n        # 点击跳转\r\n\r\n    def jumpToButtonClicked(self):\r\n        if (self.pageEdit.text().isdigit()):\r\n            self.currentPage = int(self.pageEdit.text())\r\n            if (self.currentPage > self.totalPage):\r\n                self.currentPage = self.totalPage\r\n            if (self.currentPage <= 1):\r\n                self.currentPage = 1\r\n        else:\r\n            self.currentPage = 1\r\n        index = (self.currentPage - 1) * self.pageRecord\r\n        self.pageEdit.setText(str(self.currentPage))\r\n        self.recordQuery(index)\r\n        return\r\n\r\n    def insert(self):\r\n        dlg = InsertDialog()\r\n        dlg.exec_()\r\n\r\n    def delete(self):\r\n        dlg = DeleteDialog()\r\n        dlg.exec_()\r\n\r\n    def search(self):\r\n        dlg = SearchPatient()\r\n        dlg.exec_()\r\n\r\n    def about(self):\r\n        dlg = AboutDialog()\r\n        dlg.exec_()\r\n\r\n\r\napp = QApplication(sys.argv)\r\npassdlg = LoginDialog()\r\n# if(passdlg.exec_() == QDialog.Accepted):\r\n#     window = IndexWindow()\r\n#     window.show()\r\n#     window.searchButtonClicked()\r\n#     # window.loaddata()\r\nwindow = IndexWindow()\r\nwindow.show()\r\nwindow.searchButtonClicked()\r\nsys.exit(app.exec_())
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/PyQt-Sqlite-Project-CURD-master/main.py b/PyQt-Sqlite-Project-CURD-master/main.py
+--- a/PyQt-Sqlite-Project-CURD-master/main.py	(revision e8858f8380b0f2fdf583b6588be62bdea1d39e52)
++++ b/PyQt-Sqlite-Project-CURD-master/main.py	(date 1656665164157)
+@@ -7,160 +7,11 @@
+ #from PyQt5.QtWebEngineWidgets import QWebEngineView
+ #from PyQt5.QtPrintSupport import *
+ import sys,sqlite3,time
++from addDialog import addPaDialog
++from alterDialog import alterPaDialog
+ 
+ import os
+ 
+-class InsertDialog(QDialog):
+-    def __init__(self, *args, **kwargs):
+-        super(InsertDialog, self).__init__(*args, **kwargs)
+-
+-        self.QBtn = QPushButton()
+-        self.QBtn.setText("Register")
+-
+-        self.setWindowTitle("Add Student")
+-        self.setFixedWidth(300)
+-        self.setFixedHeight(250)
+-
+-        self.QBtn.clicked.connect(self.addstudent)
+-
+-        layout = QVBoxLayout()
+-
+-        self.nameinput = QLineEdit()
+-        self.nameinput.setPlaceholderText("Name")
+-        layout.addWidget(self.nameinput)
+-
+-        self.branchinput = QComboBox()
+-        self.branchinput.addItem("Mechanical")
+-        self.branchinput.addItem("Civil")
+-        self.branchinput.addItem("Electrical")
+-        self.branchinput.addItem("Electronics and Communication")
+-        self.branchinput.addItem("Computer Science")
+-        self.branchinput.addItem("Information Technology")
+-        layout.addWidget(self.branchinput)
+-
+-        self.seminput = QComboBox()
+-        self.seminput.addItem("1")
+-        self.seminput.addItem("2")
+-        self.seminput.addItem("3")
+-        self.seminput.addItem("4")
+-        self.seminput.addItem("5")
+-        self.seminput.addItem("6")
+-        self.seminput.addItem("7")
+-        self.seminput.addItem("8")
+-        layout.addWidget(self.seminput)
+-
+-        self.mobileinput = QLineEdit()
+-        self.mobileinput.setPlaceholderText("Mobile")
+-        self.mobileinput.setInputMask('99999 99999')
+-        layout.addWidget(self.mobileinput)
+-
+-        self.addressinput = QLineEdit()
+-        self.addressinput.setPlaceholderText("Address")
+-        layout.addWidget(self.addressinput)
+-
+-        layout.addWidget(self.QBtn)
+-        self.setLayout(layout)
+-
+-    def addstudent(self):
+-
+-        name = ""
+-        branch = ""
+-        sem = -1
+-        mobile = -1
+-        address = ""
+-
+-        name = self.nameinput.text()
+-        branch = self.branchinput.itemText(self.branchinput.currentIndex())
+-        sem = self.seminput.itemText(self.seminput.currentIndex())
+-        mobile = self.mobileinput.text()
+-        address = self.addressinput.text()
+-        try:
+-            self.conn = sqlite3.connect("database.db")
+-            self.c = self.conn.cursor()
+-            self.c.execute("INSERT INTO students (name,branch,sem,Mobile,address) VALUES (?,?,?,?,?)",(name,branch,sem,mobile,address))
+-            self.conn.commit()
+-            self.c.close()
+-            self.conn.close()
+-            QMessageBox.information(QMessageBox(),'Successful','Student is added successfully to the database.')
+-            self.close()
+-        except Exception:
+-            QMessageBox.warning(QMessageBox(), 'Error', 'Could not add student to the database.')
+-
+-class SearchDialog(QDialog):
+-    def __init__(self, *args, **kwargs):
+-        super(SearchDialog, self).__init__(*args, **kwargs)
+-
+-        self.QBtn = QPushButton()
+-        self.QBtn.setText("Search")
+-
+-        self.setWindowTitle("Search user")
+-        self.setFixedWidth(300)
+-        self.setFixedHeight(100)
+-        self.QBtn.clicked.connect(self.searchstudent)
+-        layout = QVBoxLayout()
+-
+-        self.searchinput = QLineEdit()
+-        self.onlyInt = QIntValidator()
+-        self.searchinput.setValidator(self.onlyInt)
+-        self.searchinput.setPlaceholderText("Roll No.")
+-        layout.addWidget(self.searchinput)
+-        layout.addWidget(self.QBtn)
+-        self.setLayout(layout)
+-
+-    def searchstudent(self):
+-
+-        searchrol = ""
+-        searchrol = self.searchinput.text()
+-        try:
+-            self.conn = sqlite3.connect("database.db")
+-            self.c = self.conn.cursor()
+-            result = self.c.execute("SELECT * from students WHERE roll="+str(searchrol))
+-            row = result.fetchone()
+-            serachresult = "Rollno : "+str(row[0])+'\n'+"Name : "+str(row[1])+'\n'+"Branch : "+str(row[2])+'\n'+"Sem : "+str(row[3])+'\n'+"Address : "+str(row[4])
+-            QMessageBox.information(QMessageBox(), 'Successful', serachresult)
+-            self.conn.commit()
+-            self.c.close()
+-            self.conn.close()
+-        except Exception:
+-            QMessageBox.warning(QMessageBox(), 'Error', 'Could not Find student from the database.')
+-
+-class DeleteDialog(QDialog):
+-    def __init__(self, *args, **kwargs):
+-        super(DeleteDialog, self).__init__(*args, **kwargs)
+-
+-        self.QBtn = QPushButton()
+-        self.QBtn.setText("Delete")
+-
+-        self.setWindowTitle("Delete Student")
+-        self.setFixedWidth(300)
+-        self.setFixedHeight(100)
+-        self.QBtn.clicked.connect(self.deletestudent)
+-        layout = QVBoxLayout()
+-
+-        self.deleteinput = QLineEdit()
+-        self.onlyInt = QIntValidator()
+-        self.deleteinput.setValidator(self.onlyInt)
+-        self.deleteinput.setPlaceholderText("Roll No.")
+-        layout.addWidget(self.deleteinput)
+-        layout.addWidget(self.QBtn)
+-        self.setLayout(layout)
+-
+-    def deletestudent(self):
+-
+-        delrol = ""
+-        delrol = self.deleteinput.text()
+-        try:
+-            self.conn = sqlite3.connect("database.db")
+-            self.c = self.conn.cursor()
+-            self.c.execute("DELETE from students WHERE roll="+str(delrol))
+-            self.conn.commit()
+-            self.c.close()
+-            self.conn.close()
+-            QMessageBox.information(QMessageBox(),'Successful','Deleted From Table Successful')
+-            self.close()
+-        except Exception:
+-            QMessageBox.warning(QMessageBox(), 'Error', 'Could not Delete student from the database.')
+-
+ class LoginDialog(QDialog):
+     def __init__(self, *args, **kwargs):
+         super(LoginDialog, self).__init__(*args, **kwargs)
+@@ -253,200 +104,6 @@
+         except Exception:
+             return
+ 
+-class SearchPatient(QDialog):
+-    def __init__(self, *args, **kwargs):
+-        super(SearchPatient, self).__init__(*args, **kwargs)
+-
+-        self.QBtn = QPushButton()
+-        self.QBtn.setText("Search")
+-
+-        self.setWindowTitle("Search user")
+-        self.setFixedWidth(300)
+-        self.setFixedHeight(100)
+-        self.QBtn.clicked.connect(self.searchpatient)
+-        layout = QVBoxLayout()
+-
+-        self.searchinput = QLineEdit()
+-        self.onlyInt = QIntValidator()
+-        # self.searchinput.setValidator(self.onlyInt)
+-        self.searchinput.setPlaceholderText("姓名/身份证号")
+-        layout.addWidget(self.searchinput)
+-        layout.addWidget(self.QBtn)
+-        self.setLayout(layout)
+-
+-    def searchpatient(self):
+-
+-        searchrol = ""
+-        searchrol = self.searchinput.text()
+-        try:
+-            self.conn = sqlite3.connect("database.db")
+-            self.c = self.conn.cursor()
+-            result = self.c.execute("SELECT * from patient WHERE pa_name like ? OR pa_id like ?",("%"+searchrol+"%","%"+searchrol+"%"))
+-            row = result.fetchone()
+-            serachresult = "姓名 : "+str(row[1])+'\n'+"性别 : "+str(row[2])+'\n'+"年龄 : "+str(row[3])+'\n'+"身份证号 : "+str(row[4])
+-            QMessageBox.information(QMessageBox(), 'Successful', serachresult)
+-            self.conn.commit()
+-            self.c.close()
+-            self.conn.close()
+-        except Exception:
+-            return
+-
+-
+-
+-
+-class AboutDialog(QDialog):
+-    def __init__(self, *args, **kwargs):
+-        super(AboutDialog, self).__init__(*args, **kwargs)
+-
+-        self.setFixedWidth(300)
+-        self.setFixedHeight(250)
+-
+-        QBtn = QDialogButtonBox.Ok  # No cancel
+-        self.buttonBox = QDialogButtonBox(QBtn)
+-        self.buttonBox.accepted.connect(self.accept)
+-        self.buttonBox.rejected.connect(self.reject)
+-
+-        layout = QVBoxLayout()
+-
+-        title = QLabel("STDMGMT")
+-        font = title.font()
+-        font.setPointSize(20)
+-        title.setFont(font)
+-
+-        labelpic = QLabel()
+-        pixmap = QPixmap('icon/logo.png')
+-        pixmap = pixmap.scaledToWidth(275)
+-        labelpic.setPixmap(pixmap)
+-        labelpic.setFixedHeight(150)
+-
+-        layout.addWidget(title)
+-
+-        layout.addWidget(QLabel("Version 5.3.2"))
+-        layout.addWidget(QLabel("Copyright 2018 CYB Inc."))
+-        layout.addWidget(labelpic)
+-
+-
+-        layout.addWidget(self.buttonBox)
+-
+-        self.setLayout(layout)
+-
+-
+-class MainWindow(QMainWindow):
+-    def __init__(self, *args, **kwargs):
+-        super(MainWindow, self).__init__(*args, **kwargs)
+-
+-        self.conn = sqlite3.connect("database.db")
+-        self.c = self.conn.cursor()
+-        self.c.execute("CREATE TABLE IF NOT EXISTS students(roll INTEGER PRIMARY KEY AUTOINCREMENT ,name TEXT,branch TEXT,sem INTEGER,mobile INTEGER,address TEXT)")
+-        self.c.close()
+-
+-        title_meanu=self.menuBar().addMenu("&康复训练")
+-        index_meanu=self.menuBar().addMenu("&首页")
+-        task_meanu = self.menuBar().addMenu("&训练任务")
+-        patient_meanu = self.menuBar().addMenu("&患者管理")
+-        sys_meanu = self.menuBar().addMenu("&系统管理")
+-        file_menu = self.menuBar().addMenu("&File")
+-
+-        help_menu = self.menuBar().addMenu("&About")
+-
+-        self.setWindowTitle("Student Management CRUD")
+-        self.setMinimumSize(800, 600)
+-
+-        self.tableWidget = QTableWidget()
+-        self.setCentralWidget(self.tableWidget)
+-        self.tableWidget.setAlternatingRowColors(True)
+-        self.tableWidget.setColumnCount(4)
+-        self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
+-        self.tableWidget.horizontalHeader().setSortIndicatorShown(False)
+-        self.tableWidget.horizontalHeader().setStretchLastSection(True)
+-        self.tableWidget.verticalHeader().setVisible(False)
+-        self.tableWidget.verticalHeader().setCascadingSectionResizes(False)
+-        self.tableWidget.verticalHeader().setStretchLastSection(False)
+-        self.tableWidget.setHorizontalHeaderLabels(( "姓名", "性别", "年龄", "身份证号"))
+-
+-        toolbar = QToolBar()
+-        toolbar.setMovable(False)
+-        self.addToolBar(toolbar)
+-
+-        statusbar = QStatusBar()
+-        self.setStatusBar(statusbar)
+-
+-        btn_ac_adduser = QAction(QIcon("icon/add.png"), "Add Student", self)
+-        btn_ac_adduser.triggered.connect(self.insert)
+-        btn_ac_adduser.setStatusTip("Add Student")
+-        toolbar.addAction(btn_ac_adduser)
+-
+-        btn_ac_refresh = QAction(QIcon("icon/refresh.png"),"Refresh",self)
+-        btn_ac_refresh.triggered.connect(self.loaddata)
+-        btn_ac_refresh.setStatusTip("Refresh Table")
+-        toolbar.addAction(btn_ac_refresh)
+-
+-        btn_ac_search = QAction(QIcon("icon/search.png"), "Search", self)
+-        btn_ac_search.triggered.connect(self.search)
+-        btn_ac_search.setStatusTip("Search User")
+-        toolbar.addAction(btn_ac_search)
+-
+-        btn_ac_delete = QAction(QIcon("icon/trash.png"), "Delete", self)
+-        btn_ac_delete.triggered.connect(self.delete)
+-        btn_ac_delete.setStatusTip("Delete User")
+-        toolbar.addAction(btn_ac_delete)
+-
+-        adduser_action = QAction(QIcon("icon/add.png"),"Insert Student", self)
+-        adduser_action.triggered.connect(self.insert)
+-        file_menu.addAction(adduser_action)
+-
+-        searchuser_action = QAction(QIcon("icon/search.png"), "Search Student", self)
+-        searchuser_action.triggered.connect(self.search)
+-        file_menu.addAction(searchuser_action)
+-
+-        deluser_action = QAction(QIcon("icon/trash.png"), "Delete", self)
+-        deluser_action.triggered.connect(self.delete)
+-        file_menu.addAction(deluser_action)
+-
+-
+-        about_action = QAction(QIcon("icon/info.png"),"Developer", self)
+-        about_action.triggered.connect(self.about)
+-        help_menu.addAction(about_action)
+-
+-    def loaddata(self):
+-        self.connection = sqlite3.connect("database.db")
+-        query = "SELECT pa_name,pa_gender,pa_age,pa_id FROM patient"
+-        result = self.connection.execute(query)
+-        self.tableWidget.setRowCount(0)
+-        for row_number, row_data in enumerate(result):
+-            self.tableWidget.insertRow(row_number)
+-            for column_number, data in enumerate(row_data):
+-                self.tableWidget.setItem(row_number, column_number,QTableWidgetItem(str(data)))
+-        self.connection.close()
+-
+-    def handlePaintRequest(self, printer):
+-        document = QTextDocument()
+-        cursor = QTextCursor(document)
+-        model = self.table.model()
+-        table = cursor.insertTable(
+-            model.rowCount(), model.columnCount())
+-        for row in range(table.rows()):
+-            for column in range(table.columns()):
+-                cursor.insertText(model.item(row, column).text())
+-                cursor.movePosition(QTextCursor.NextCell)
+-        document.print_(printer)
+-
+-    def insert(self):
+-        dlg = InsertDialog()
+-        dlg.exec_()
+-
+-    def delete(self):
+-        dlg = DeleteDialog()
+-        dlg.exec_()
+-
+-    def search(self):
+-        dlg = SearchPatient()
+-        dlg.exec_()
+-
+-    def about(self):
+-        dlg = AboutDialog()
+-        dlg.exec_()
+-
+ class IndexWindow(QWidget):
+     def __init__(self, *args, **kwargs):
+         super(IndexWindow, self).__init__(*args, **kwargs)
+@@ -464,6 +121,11 @@
+         self.totalRecord = 0
+         # 每页数据数
+         self.pageRecord = 10
++        # 当前患者名字
++        self.temp_paname=""
++        # 当前患者编号
++        self.temp_pano=""
++        self.alterDialog = alterPaDialog(self)
+         self.setUpUI()
+ 
+     def setUpUI(self):
+@@ -478,6 +140,7 @@
+         self.indexlayout=QHBoxLayout()
+         self.pa_layout=QHBoxLayout()
+         self.Hlayout1 = QHBoxLayout()
++        self.pa_btns_laylout=QHBoxLayout()
+         self.Hlayout2 = QHBoxLayout()
+ 
+         #导航栏
+@@ -512,7 +175,6 @@
+ 
+         # 当前已选择患者
+ 
+-        self.temp_pa_no="" # 患者编号，读取编号的函数在func_test()中
+         self.selected_pa_label=QLabel("当前选择的患者为：无")
+         self.pa_layout.addWidget(self.selected_pa_label)
+ 
+@@ -538,6 +200,17 @@
+         self.Hlayout1.addWidget(self.searchButton)
+         self.Hlayout1.addWidget(self.condisionComboBox)
+ 
++        # 增删改
++        self.addBtn=QPushButton("增加")
++        self.deleteBtn = QPushButton("删除")
++        self.alterBtn = QPushButton("查看")
++        self.pa_btns_laylout.addWidget(self.addBtn)
++        self.pa_btns_laylout.addWidget(self.deleteBtn)
++        self.pa_btns_laylout.addWidget(self.alterBtn)
++        self.addBtn.clicked.connect(self.addBtnClicked)
++        self.deleteBtn.clicked.connect(self.deleteBtnClicked)
++        self.alterBtn.clicked.connect(self.alterBtnClicked)
++
+         # Hlayout2初始化，翻页功能
+         self.jumpToLabel = QLabel("跳转到第")
+         self.pageEdit = QLineEdit()
+@@ -571,6 +244,7 @@
+         self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
+         self.tableView.setSelectionMode(QAbstractItemView.SingleSelection)  # 设置只能选中一行
+         self.func_mappingSignal()
++        # self.showPaImage()
+         index = self.tableView.currentIndex()  # 取得当前选中行的index
+         # self.model = QStandardItemModel()
+         # self.tableView.setModel(self.model)
+@@ -588,10 +262,12 @@
+         self.queryModel.setHeaderData(2, Qt.Horizontal, "年龄")
+         self.queryModel.setHeaderData(3, Qt.Horizontal, "身份证号")
+ 
++
+         self.layout.addLayout(self.indexlayout)
+         self.layout.addLayout(self.pa_layout)
+         self.layout.addLayout(self.Hlayout1)
+         self.layout.addWidget(self.tableView)
++        self.layout.addLayout(self.pa_btns_laylout)
+         self.layout.addLayout(self.Hlayout2)
+         self.setLayout(self.layout)
+         self.searchButton.clicked.connect(self.searchButtonClicked)
+@@ -613,9 +289,58 @@
+         NewIndex = self.tableView.currentIndex().siblingAtColumn(1)
+         Name = NewIndex.data()
+         self.selected_pa_label.setText("当前选择的患者为：" + Name)
++        self.temp_paname =Name
+         # 获取患者编号
+-        # # pa_no_index = self.tableView.currentIndex().siblingAtColumn(0)
+-        # #temp_pa_no = pa_no_index.data()
++        pa_no_index = self.tableView.currentIndex().siblingAtColumn(0)
++        self.temp_pano = pa_no_index.data()
++
++    def addBtnClicked(self):
++        addDialog = addPaDialog(self)
++        # addDialog.add_pa_success_signal.connect(self.window.searchButtonClicked)
++        addDialog.show()
++        addDialog.exec_()
++        self.searchButtonClicked()
++    def deleteBtnClicked(self):
++        if(self.temp_pano==""):
++            print(QMessageBox.warning(self, "警告", "请选择一名患者", QMessageBox.Yes, QMessageBox.Yes))
++        else:
++            ret=QMessageBox.information(self, "提示", "是否删除患者"+self.temp_paname, QMessageBox.Yes, QMessageBox.No)
++            if(ret==QMessageBox.Yes):
++                db = QSqlDatabase.addDatabase("QSQLITE")
++                db.setDatabaseName('database.db')
++                db.open()
++                query = QSqlQuery()
++                # 如果已存在，则update Book表的现存量，剩余可借量，不存在，则insert Book表，同时insert buyordrop表
++                sql = "SELECT * FROM patient WHERE pa_no='%s'" % (self.temp_pano)
++                query.exec_(sql)
++                # 提示不存在
++                if not (query.next()):
++                    print(QMessageBox.warning(self, "警告", "该患者不存在", QMessageBox.Yes, QMessageBox.Yes))
++                    return
++                else:
++                    sql = "DELETE FROM patient WHERE pa_no='%s'" % (self.temp_pano)
++                    query.exec_(sql)
++                    db.commit()
++                    print(QMessageBox.information(self, "提示", "删除成功，患者"+self.temp_paname+"已删除", QMessageBox.Yes, QMessageBox.Yes))
++                    self.temp_pano=""
++                    self.temp_paname=""
++                    self.selected_pa_label.setText("当前选择的患者为：")
++        self.searchButtonClicked()
++    def alterBtnClicked(self):
++        # alterDialog = alterPaDialog(self)
++        self.alterDialog.setNo(self.temp_pano)
++        self.alterDialog.fillContent()
++        # addDialog.add_pa_success_signal.connect(self.window.searchButtonClicked)
++        self.alterDialog.show()
++        self.alterDialog.exec_()
++        self.searchButtonClicked()
++    #展示图片
++    # def showPaImage(self):
++    #     # imageItem = QStandardItem(QIcon("pa_head/pa_0"))
++    #     image_path="pa_head/pa_0"
++    #     imageItem = QtGui.QPixmap(image_path).scaled(300, 300)
++    #     img = mping.imread('path')  # 相对路径
++    #     self.tableView.setItem(0, 6, imageItem)
+     # 查询
+     def recordQuery(self, index):
+         queryCondition = ""
+@@ -741,31 +466,15 @@
+         self.recordQuery(index)
+         return
+ 
+-    def insert(self):
+-        dlg = InsertDialog()
+-        dlg.exec_()
+-
+-    def delete(self):
+-        dlg = DeleteDialog()
+-        dlg.exec_()
+-
+-    def search(self):
+-        dlg = SearchPatient()
+-        dlg.exec_()
+-
+-    def about(self):
+-        dlg = AboutDialog()
+-        dlg.exec_()
+-
+ 
+ app = QApplication(sys.argv)
+ passdlg = LoginDialog()
+-# if(passdlg.exec_() == QDialog.Accepted):
+-#     window = IndexWindow()
+-#     window.show()
+-#     window.searchButtonClicked()
+-#     # window.loaddata()
+-window = IndexWindow()
+-window.show()
+-window.searchButtonClicked()
+-sys.exit(app.exec_())
+\ No newline at end of file
++if(passdlg.exec_() == QDialog.Accepted):
++    window = IndexWindow()
++    window.show()
++    window.searchButtonClicked()
++    sys.exit(app.exec_())
++# window = IndexWindow()
++# window.show()
++# window.searchButtonClicked()
++# sys.exit(app.exec_())
+\ No newline at end of file
